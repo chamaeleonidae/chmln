@@ -1,16 +1,16 @@
 {
   "name": "@chamaeleonidae/chmln",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "The official Chameleon JavaScript browser client library",
   "main": "index.js",
   "license": "Apache-2.0",
-  "homepage": "https://github.com/chamaeleonidae/===",
+  "homepage": "https://github.com/chamaeleonidae/chmln",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chamaeleonidae/===.git"
+    "url": "https://github.com/chamaeleonidae/chmln.git"
   },
   "bugs": {
-    "url": "https://github.com/chamaeleonidae/===/issues"
+    "url": "https://github.com/chamaeleonidae/chmln/issues"
   },
   "files": [
     "index.js",
