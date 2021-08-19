@@ -24,7 +24,7 @@ chmln.init('YOUR_TOKEN');
 
 First, follow the installation process above, the script loads asynchronously and won’t affect your page loading times.
 
-Next, identify your users by sending a unique ID (this normally matches the UIDs from your database). Without this, Chameleon can’t display Experiences to users. You should also send additional user data (such as “email address”, “role”) or company data (such as “plan type”, “subdomain”) so you can target Experiences to the right users, at the right time.
+Next, identify your users by sending a unique ID (this normally matches the UIDs from your database). Without this, Chameleon can’t display Experiences to users. You should also [send additional user data](https://help.trychameleon.com/en/articles/1226443-how-do-i-send-my-users-data-to-chameleon) (such as “email address”, “role”) or company data (such as “plan type”, “subdomain”) so you can target Experiences to the right users, at the right time.
 
 ```javascript
 chmln.identify(USER.ID_IN_DB, {     // REQUIRED Unique ID of each user in your database (e.g. 23443 or "590b80e5f433ea81b96c9bf6")
