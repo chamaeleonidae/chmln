@@ -6,7 +6,7 @@ The Chameleon JavaScript Library is a set of methods attached to a global `chmln
 
 ## Installation via NPM
 
-This library is available as a package on NPM. to install into a project using NPM with a front-end packager such as Browserify or Webpack:
+This library is available as a package on NPM. To install into a project using NPM with a front-end packager such as Browserify or Webpack:
 
 ```
   npm install --save @chamaeleonidae/chmln
@@ -22,7 +22,7 @@ chmln.init('YOUR_TOKEN');
 
 ## Usage
 
-First, follow the installation process above, the script loads asynchronously and won’t affect your page loading times.
+First, follow the installation process above. The script loads asynchronously and won’t affect your page loading times.
 
 Next, identify your users by sending a unique ID (this normally matches the UIDs from your database). Without this, Chameleon can’t display Experiences to users. You should also [send additional user data](https://help.trychameleon.com/en/articles/1226443-how-do-i-send-my-users-data-to-chameleon) (such as “email address”, “role”) or company data (such as “plan type”, “subdomain”) so you can target Experiences to the right users, at the right time.
 
