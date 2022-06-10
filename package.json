@@ -1,7 +1,7 @@
 {
   "name": "@chamaeleonidae/chmln",
-  "version": "1.0.0-alpha.2",
-  "description": "The official Chameleon JavaScript browser client library",
+  "version": "1.0.1",
+  "description": "The official chameleon.io JavaScript client library",
   "main": "index.js",
   "license": "Apache-2.0",
   "homepage": "https://github.com/chamaeleonidae/chmln",

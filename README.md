@@ -2,23 +2,37 @@
 
 Easily add Chameleon to your product!
 
-The Chameleon JavaScript Library is a set of methods attached to a global `chmln` object intended to be used by websites wishing to display Chameleon Experiences to users.
+The Chameleon JavaScript Library is a set of methods attached to a global `chmln` object intended to be used by applications to display Chameleon Experiences to users.
 
 ## Installation via NPM
 
-This library is available as a package on NPM. To install into a project using NPM with a front-end packager such as Browserify or Webpack:
+This library is available as a package on NPM. To install into a project using NPM with a front-end packager such as Webpack or Browserify:
 
 ```
   npm install --save @chamaeleonidae/chmln
 ```
 
-You can then require the lib like a standard Node.js module:
+You can grab your [token](https://app.chameleon.io/setup/install) then require the lib like a standard Node.js module:
 
 ```javascript
 const chmln = require('@chamaeleonidae/chmln');
 
+chmln.init('YOUR_TOKEN', { fastUrl: 'https://fast.chameleon.io/' });
+```
+
+> Note for accounts created before *2022-05-21* you must omit the fastUrl
+> If you're unsure, verify your account-specific instructions on the [installation page](https://app.chameleon.io/setup/install).
+
+```javascript
 chmln.init('YOUR_TOKEN');
 ```
+
+> To use Chameleon as first-party (i.e. via `chameleon.your-product.com`), first [contact us](https://app.chameleon.io/help) to set this up, then use this updated script with your custom domain.
+
+```javascript
+chmln.init('YOUR_TOKEN', { fastUrl: 'https://chameleon.your-product.com/' }); // << CHAMGEME
+```
+
 
 ## Usage
 
