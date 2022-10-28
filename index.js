@@ -34,8 +34,18 @@ const track = (eventName) => {
   chmln.track(eventName);
 }
 
+const on = (eventName, callback) => {
+  if (!chmln || !chmln.on) {
+    console.log(`Failed to listen to event [${eventName}] because the chameleon.io script was not initialized yet.`);
+    return;
+  }
+
+  chmln.on(eventName, callback);
+}
+
 module.exports = {
   init,
   identify,
-  track
+  track,
+  on
 };
