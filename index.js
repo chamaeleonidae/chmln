@@ -1,10 +1,7 @@
 
-const noop_available = () => { console.log(`Failed to run because the chameleon.io script was not initialized yet.`);
-return; };
-
 const chmln_object = {
   init: (token, { fastUrl } = {}) => {
-    if (typeof chmln !== 'undefined') {
+    if (typeof window.chmln !== 'undefined') {
       console.log(`The global variable \`chmln\` is already defined.\nPlease make sure you're not adding Chameleon to the page other than with this library.`);
       return;
     }
@@ -18,15 +15,7 @@ const chmln_object = {
         w[c].now=new Date;for(var s=0;s<m.length;s++){!function(){var t=w[c][m[s]+"_a"]=[];w[c][m[s]]=function(){t.push(arguments);};}();}
         i.src=w[c].fastUrl+"messo/"+t+"/messo.min.js",
         i.async=!0,d.head.appendChild(i),w[c].init=null;}
-  },
-  identify: noop_available,
-  alias: noop_available,
-  track: noop_available,
-  clear: noop_available,
-  set: noop_available,
-  show: noop_available,
-  on: noop_available,
-  off: noop_available
+  }
 };
 
 module.exports = chmln_object;
