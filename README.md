@@ -15,24 +15,23 @@ This library is available as a package on NPM. To install into a project using N
 You can grab your [token](https://app.chameleon.io/setup/install) then require the lib like a standard Node.js module:
 
 ```javascript
-const chmln = require('@chamaeleonidae/chmln');
+const chameleon = require('@chamaeleonidae/chmln');
 
-chmln.init('YOUR_TOKEN', { fastUrl: 'https://fast.chameleon.io/' });
+chameleon.init('YOUR_TOKEN', { fastUrl: 'https://fast.chameleon.io/' });
 ```
 
 > Note for accounts created before *2022-05-21* you must omit the fastUrl
 > If you're unsure, verify your account-specific instructions on the [installation page](https://app.chameleon.io/setup/install).
 
 ```javascript
-chmln.init('YOUR_TOKEN');
+chameleon.init('YOUR_TOKEN');
 ```
 
 > To use Chameleon as first-party (i.e. via `chameleon.your-product.com`), first [contact us](https://app.chameleon.io/help) to set this up, then use this updated script with your custom domain.
 
 ```javascript
-chmln.init('YOUR_TOKEN', { fastUrl: 'https://chameleon.your-product.com/' }); // << CHANGE ME
+chameleon.init('YOUR_TOKEN', { fastUrl: 'https://chameleon.your-product.com/' }); // << CHANGE ME
 ```
-
 
 ## Usage
 
@@ -40,8 +39,10 @@ First, follow the installation process above. The script loads asynchronously an
 
 Next, identify your users by sending a unique ID (this normally matches the UIDs from your database). Without this, Chameleon can’t display Experiences to users. You should also [send additional user data](https://help.trychameleon.com/en/articles/1226443-how-do-i-send-my-users-data-to-chameleon) (such as “email address”, “role”) or company data (such as “plan type”, “subdomain”) so you can target Experiences to the right users, at the right time.
 
+**Note:** the init method will create the Chameleon namespace at `window.chmln`. The best practice is to call [Javascript API methods](https://developers.chameleon.io/#/js/overview) using this namespace.
+
 ```javascript
-chmln.identify(USER.ID_IN_DB, {     // REQUIRED Unique ID of each user in your database (e.g. 23443 or "590b80e5f433ea81b96c9bf6")
+window.chmln.identify(USER.ID_IN_DB, {     // REQUIRED Unique ID of each user in your database (e.g. 23443 or "590b80e5f433ea81b96c9bf6")
   email: USER.EMAIL,                // RECOMMENDED Used to connect data coming from various integrations
 
   // SUGGESTED - User properties:
@@ -67,6 +68,6 @@ chmln.identify(USER.ID_IN_DB, {     // REQUIRED Unique ID of each user in your d
 Optionally you have the ability to track user events:
 
 ```javascript
-chmln.track(PLAN_CHANGED);          // Example event "PLAN_CHANGED" can be used for targeting or measuring success
-chmln.track(ACTIVATED);             // Having a defined activation point can be helpful for targeting onboarding experiences.
+window.chmln.track(PLAN_CHANGED);          // Example event "PLAN_CHANGED" can be used for targeting or measuring success
+window.chmln.track(ACTIVATED);             // Having a defined activation point can be helpful for targeting onboarding experiences.
 ```

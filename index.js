@@ -1,8 +1,6 @@
-const init = (token, { fastUrl, forceOverride } = {}) => {
-  if (forceOverride) {
-    chmln = undefined;
-  } else if (typeof chmln !== 'undefined') {
-    console.log(`The global variable \`chmln\` is already defined.\nPlease make sure you're not adding Chameleon to the page other than with this library. Alternatively, you can use the forceOverride option to remove any previous declaration.\n\ne.g.   chmln.init('token', { forceOverride: true });`);
+const init = (token, { fastUrl } = {}) => {
+  if (typeof chmln !== 'undefined') {
+    console.log(`The global variable \`chmln\` is already defined.\nPlease make sure you're not adding Chameleon to the page other than with this library.`);
     return;
   }
 
@@ -17,25 +15,40 @@ const init = (token, { fastUrl, forceOverride } = {}) => {
 }
 
 const identify = (id, options) => {
-  if (!chmln || !chmln.identify) {
+  if (!window.chmln || !window.chmln.identify) {
     console.log(`Failed to identify the user [${id}] because the chameleon.io script was not initialized yet.`);
     return;
   }
 
-  chmln.identify(id, options || {});
+  window.chmln.identify(id, options || {});
 }
 
-const track = (eventName) => {
-  if (!chmln || !chmln.track) {
-    console.log(`Failed to track event [${eventName}] because the chameleon.io script was not initialized yet.`);
-    return;
+const track = api_factory('track');
+const clear = api_factory('clear');
+const set = api_factory('set');
+const show = api_factory('set');
+const on = api_factory('on');
+const off = api_factory('off');
+
+const api_factory = (method_name) => {
+  return function() {
+    if (!chmln || !chmln[method_name]) {
+      console.log(`Failed to call [${method_name}] because the chameleon.io script was not initialized yet.`);
+      return;
+    }
+
+    window.chmln[method_name].apply(this, arguments);
   }
-
-  chmln.track(eventName);
 }
+
 
 module.exports = {
   init,
   identify,
-  track
+  track,
+  clear,
+  set,
+  show,
+  on,
+  off
 };
