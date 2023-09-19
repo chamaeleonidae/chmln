@@ -39,10 +39,9 @@ First, follow the installation process above. The script loads asynchronously an
 
 Next, identify your users by sending a unique ID (this normally matches the UIDs from your database). Without this, Chameleon can’t display Experiences to users. You should also [send additional user data](https://help.trychameleon.com/en/articles/1226443-how-do-i-send-my-users-data-to-chameleon) (such as “email address”, “role”) or company data (such as “plan type”, “subdomain”) so you can target Experiences to the right users, at the right time.
 
-**Note:** the init method will create the Chameleon namespace at `window.chmln`. The best practice is to call [Javascript API methods](https://developers.chameleon.io/#/js/overview) using this namespace.
 
 ```javascript
-window.chmln.identify(USER.ID_IN_DB, {     // REQUIRED Unique ID of each user in your database (e.g. 23443 or "590b80e5f433ea81b96c9bf6")
+chmln.identify(USER.ID_IN_DB, {     // REQUIRED Unique ID of each user in your database (e.g. 23443 or "590b80e5f433ea81b96c9bf6")
   email: USER.EMAIL,                // RECOMMENDED Used to connect data coming from various integrations
 
   // SUGGESTED - User properties:
@@ -68,6 +67,6 @@ window.chmln.identify(USER.ID_IN_DB, {     // REQUIRED Unique ID of each user in
 Optionally you have the ability to track user events:
 
 ```javascript
-window.chmln.track(PLAN_CHANGED);          // Example event "PLAN_CHANGED" can be used for targeting or measuring success
-window.chmln.track(ACTIVATED);             // Having a defined activation point can be helpful for targeting onboarding experiences.
+chmln.track(PLAN_CHANGED);          // Example event "PLAN_CHANGED" can be used for targeting or measuring success
+chmln.track(ACTIVATED);             // Having a defined activation point can be helpful for targeting onboarding experiences.
 ```
