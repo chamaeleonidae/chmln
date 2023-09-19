@@ -15,22 +15,22 @@ This library is available as a package on NPM. To install into a project using N
 You can grab your [token](https://app.chameleon.io/setup/install) then require the lib like a standard Node.js module:
 
 ```javascript
-const chameleon = require('@chamaeleonidae/chmln');
+const chmln = require('@chamaeleonidae/chmln');
 
-chameleon.init('YOUR_TOKEN', { fastUrl: 'https://fast.chameleon.io/' });
+chmln.init('YOUR_TOKEN', { fastUrl: 'https://fast.chameleon.io/' });
 ```
 
 > Note for accounts created before *2022-05-21* you must omit the fastUrl
 > If you're unsure, verify your account-specific instructions on the [installation page](https://app.chameleon.io/setup/install).
 
 ```javascript
-chameleon.init('YOUR_TOKEN');
+chmln.init('YOUR_TOKEN');
 ```
 
 > To use Chameleon as first-party (i.e. via `chameleon.your-product.com`), first [contact us](https://app.chameleon.io/help) to set this up, then use this updated script with your custom domain.
 
 ```javascript
-chameleon.init('YOUR_TOKEN', { fastUrl: 'https://chameleon.your-product.com/' }); // << CHANGE ME
+chmln.init('YOUR_TOKEN', { fastUrl: 'https://chameleon.your-product.com/' }); // << CHANGE ME
 ```
 
 ## Usage
