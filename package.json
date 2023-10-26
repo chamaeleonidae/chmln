@@ -17,5 +17,6 @@
     "license",
     "package.json",
     "readme.md"
-  ]
+  ],
+  "types": "index.d.ts"
 }
