@@ -16,7 +16,7 @@ if (typeof chmln_object === 'undefined' || !chmln_object.identify) {
     
     chmln_object.accountToken = token;
     chmln_object.location = window.location.href.toString();
-    chmln_object.now = new Date;
+    chmln_object.now = new Date();
     chmln_object.fastUrl = fastUrl || 'https://fast.chameleon.io/';
     
     chmlnScriptTag.src = chmln_object.fastUrl + "messo/" + token + "/messo.min.js";
