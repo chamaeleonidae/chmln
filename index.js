@@ -12,17 +12,17 @@ if (typeof chmln_object === 'undefined' || !chmln_object.identify) {
   }
 
   chmln_object.init = (token, { fastUrl } = {}) => {
-    const d = document;
-    const w = window;
-    const t = token;
-    const s = d.createElement("script");
-    chmln_object.accountToken = t;
-    chmln_object.location = w.location.href.toString();
+    const chmlnScriptTag = document.createElement("script");
+    
+    chmln_object.accountToken = token;
+    chmln_object.location = window.location.href.toString();
     chmln_object.now = new Date;
     chmln_object.fastUrl = fastUrl || 'https://fast.chameleon.io/';
-    s.src = chmln_object.fastUrl + "messo/" + t + "/messo.min.js";
-    s.async = true;
-    d.head.appendChild(s);
+    
+    chmlnScriptTag.src = chmln_object.fastUrl + "messo/" + token + "/messo.min.js";
+    chmlnScriptTag.async = true;
+    
+    document.head.appendChild(chmlnScriptTag);
   };
 }
 
