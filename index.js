@@ -3,7 +3,7 @@ let chmln_object = window.chmln;
 
 if (typeof chmln_object === 'undefined' || !chmln_object.identify) {
   chmln_object = chmln_object || (window.chmln = {});
-  const defaultFunctions = ['identify', 'alias', 'track', 'clear', 'set', 'show', 'on', 'off', 'custom', 'help',  _data'];
+  const defaultFunctions = ['identify', 'alias', 'track', 'clear', 'set', 'show', 'on', 'off', 'custom', 'help',  '_data'];
   for (var i = 0; i < defaultFunctions.length; i++) {
     (!function() {
       const placeholder_function = chmln_object[defaultFunctions[i]+"_a"] = [];
