@@ -1,41 +1,29 @@
-const init = (token, { fastUrl, forceOverride } = {}) => {
-  if (forceOverride) {
-    chmln = undefined;
-  } else if (typeof chmln !== 'undefined') {
-    console.log(`The global variable \`chmln\` is already defined.\nPlease make sure you're not adding Chameleon to the page other than with this library. Alternatively, you can use the forceOverride option to remove any previous declaration.\n\ne.g.   chmln.init('token', { forceOverride: true });`);
-    return;
+
+let chmln_object = window.chmln;
+
+if (typeof chmln_object === 'undefined' || !chmln_object.identify) {
+  chmln_object = chmln_object || (window.chmln = {});
+  const defaultFunctions = ['identify', 'alias', 'track', 'clear', 'set', 'show', 'on', 'off', 'custom', 'help',  '_data'];
+  for (var i = 0; i < defaultFunctions.length; i++) {
+    (!function() {
+      const placeholder_function = chmln_object[defaultFunctions[i]+"_a"] = [];
+      chmln_object[defaultFunctions[i]] = function() { placeholder_function.push(arguments); };
+    }());
   }
 
-  var d = document;
-  var w = window;
-  var t = token,
-  c="chmln",m="identify alias track clear set show on off custom help _data".split(" "),
-  i=d.createElement("script");if(w[c]||(w[c]={}),!w[c].root){w[c].accountToken=t,w[c].location=w.location.href.toString(),w[c].fastUrl=fastUrl||'https://fast.trychameleon.com/',
-      w[c].now=new Date;for(var s=0;s<m.length;s++){!function(){var t=w[c][m[s]+"_a"]=[];w[c][m[s]]=function(){t.push(arguments);};}();}
-      i.src=w[c].fastUrl+"messo/"+t+"/messo.min.js",
-      i.async=!0,d.head.appendChild(i);}
+  chmln_object.init = (token, { fastUrl } = {}) => {
+    const chmlnScriptTag = document.createElement("script");
+    
+    chmln_object.accountToken = token;
+    chmln_object.location = window.location.href.toString();
+    chmln_object.now = new Date();
+    chmln_object.fastUrl = fastUrl || 'https://fast.chameleon.io/';
+    
+    chmlnScriptTag.src = chmln_object.fastUrl + "messo/" + token + "/messo.min.js";
+    chmlnScriptTag.async = true;
+    
+    document.head.appendChild(chmlnScriptTag);
+  };
 }
 
-const identify = (id, options) => {
-  if (!chmln || !chmln.identify) {
-    console.log(`Failed to identify the user [${id}] because the chameleon.io script was not initialized yet.`);
-    return;
-  }
-
-  chmln.identify(id, options || {});
-}
-
-const track = (eventName) => {
-  if (!chmln || !chmln.track) {
-    console.log(`Failed to track event [${eventName}] because the chameleon.io script was not initialized yet.`);
-    return;
-  }
-
-  chmln.track(eventName);
-}
-
-module.exports = {
-  init,
-  identify,
-  track
-};
+module.exports = chmln_object;
