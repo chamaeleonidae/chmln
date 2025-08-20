@@ -11,17 +11,18 @@ if (typeof chmln_object === 'undefined' || !chmln_object.identify) {
     }());
   }
 
-  chmln_object.init = (token, { fastUrl } = {}) => {
+  chmln_object.init = (token, { fastUrl, defer = false } = {}) => {
     const chmlnScriptTag = document.createElement("script");
-    
+
     chmln_object.accountToken = token;
     chmln_object.location = window.location.href.toString();
     chmln_object.now = new Date();
     chmln_object.fastUrl = fastUrl || 'https://fast.chameleon.io/';
-    
+
     chmlnScriptTag.src = chmln_object.fastUrl + "messo/" + token + "/messo.min.js";
-    chmlnScriptTag.async = true;
-    
+    if (defer) chmlnScriptTag.defer = true;
+    else chmlnScriptTag.async = true;
+
     document.head.appendChild(chmlnScriptTag);
   };
 }
