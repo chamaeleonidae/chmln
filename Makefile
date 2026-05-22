@@ -13,4 +13,4 @@ release: ## Bump version, publish to npm, and push tags
 	npm version $(BUMP)
 	npm publish --access public
 	git push && git push --tags
-	@echo "Published $$(node -p "require('./package.json').version")"
+	@echo "Published $$(node -p 'require("./package.json").version')"
