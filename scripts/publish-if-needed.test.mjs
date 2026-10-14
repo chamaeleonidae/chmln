@@ -1,5 +1,6 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
+import { spawnSync } from 'node:child_process';
 
 import { isPublished, planRelease, runMain, versionUrl } from './publish-if-needed.mjs';
 
@@ -251,6 +252,24 @@ describe('runMain', () => {
       assert.deepEqual(readFile.paths, []);
       assert.deepEqual(fetchImpl.urls, []);
       assert.deepEqual(exec.calls, []);
+    });
+  });
+});
+
+describe('CLI entry point', () => {
+  describe('when not running in GitHub Actions', () => {
+    it('exits 1 with the refusal on stderr and nothing on stdout', () => {
+      const result = spawnSync(process.execPath, ['scripts/publish-if-needed.mjs'], {
+        // npm test runs inside the publish job: inheriting its environment (GITHUB_ACTIONS=true and
+        // the OIDC token variables) would let the spawned script really publish and tag.
+        env: {},
+        encoding: 'utf8',
+      });
+
+      assert.equal(result.error, undefined);
+      assert.equal(result.status, 1);
+      assert.equal(result.stdout, '');
+      assert.equal(result.stderr, 'Publishing requires GitHub Actions — releases run from .github/workflows/publish.yml (see RELEASING.md)\n');
     });
   });
 });
