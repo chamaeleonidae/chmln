@@ -3,11 +3,14 @@
   "version": "1.0.2",
   "description": "The official chameleon.io JavaScript client library",
   "main": "index.js",
+  "scripts": {
+    "test": "node --test"
+  },
   "license": "Apache-2.0",
   "homepage": "https://github.com/chamaeleonidae/chmln",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chamaeleonidae/chmln.git"
+    "url": "git+https://github.com/chamaeleonidae/chmln.git"
   },
   "bugs": {
     "url": "https://github.com/chamaeleonidae/chmln/issues"
