@@ -1,7 +1,7 @@
 # Publishes @chamaeleonidae/chmln when the version in package.json is not on npm yet,
 # then tags the commit <version>. npm trusted publishing authenticates this workflow by
-# its GitHub OIDC identity, so no npm token exists. That npm setting names this file:
-# renaming it stops publishing until the setting is updated. See RELEASING.md.
+# its GitHub OIDC identity, so no npm token exists. That npm setting names this file and
+# the job's environment: renaming either stops publishing until it is updated. See RELEASING.md.
 name: Publish to npm
 
 on:
@@ -17,6 +17,9 @@ concurrency:
 jobs:
   publish:
     if: github.repository == 'chamaeleonidae/chmln'
+    # npm accepts only this environment, and its rule in Settings > Environments admits only
+    # main, so a branch can't publish by pushing its own copy of this file.
+    environment: npm
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
